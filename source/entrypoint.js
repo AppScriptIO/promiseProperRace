@@ -1,7 +1,11 @@
 // From: https://github.com/Casturan/proper-promise-race.js
 // USAGE: properRace = require('promiseProperRace.js')
 
-function properRace(promises, count = 1, results = []) {
+function properRace(
+  promises, // array of promises to race
+  count = 1, // for recursive calling
+  results = [] // aggregator
+) {
   promises = Array.from(promises);
   if (promises.length < count) {
     return Promise.reject('Race is not finishable or all promises rejected.');
