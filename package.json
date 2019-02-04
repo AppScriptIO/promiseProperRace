@@ -1,5 +1,5 @@
 {
   "name": "@dependency/promiseProperRace",
-  "main": "./source/entrypoint.js",
+  "main": "./source/script.js",
   "version": "1.0.0"
 }
