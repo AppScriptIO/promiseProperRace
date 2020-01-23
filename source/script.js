@@ -1,29 +1,30 @@
-// From: https://github.com/Casturan/proper-promise-race.js
-// USAGE: properRace = require('promiseProperRace.js')
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
 
 function properRace(
-  promises, // array of promises to race
-  count = 1, // for recursive calling
-  results = [] // aggregator
-) {
+promises,
+count = 1,
+results = [])
+{
   promises = Array.from(promises);
   if (promises.length < count) {
     return Promise.reject('Race is not finishable or all promises rejected.');
   }
-   
+
   let indexPromises = promises.map((p, index) => p.then(() => index, () => {throw index;}));
-   
+
   return Promise.race(indexPromises).then(index => {
     let p = promises.splice(index, 1)[0];
     p.then(v => results.push(v));
     if (count === 1) {
       return results;
     }
-    return properRace(promises, count-1, results);
+    return properRace(promises, count - 1, results);
   }, index => {
     promises.splice(index, 1);
     return properRace(promises, count, results);
   });
-}
+}var _default =
 
-export default properRace
+properRace;exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NvdXJjZS9zY3JpcHQuanMiXSwibmFtZXMiOlsicHJvcGVyUmFjZSIsInByb21pc2VzIiwiY291bnQiLCJyZXN1bHRzIiwiQXJyYXkiLCJmcm9tIiwibGVuZ3RoIiwiUHJvbWlzZSIsInJlamVjdCIsImluZGV4UHJvbWlzZXMiLCJtYXAiLCJwIiwiaW5kZXgiLCJ0aGVuIiwicmFjZSIsInNwbGljZSIsInYiLCJwdXNoIl0sIm1hcHBpbmdzIjoiOzs7QUFHQSxTQUFTQSxVQUFUO0FBQ0VDLFFBREY7QUFFRUMsS0FBSyxHQUFHLENBRlY7QUFHRUMsT0FBTyxHQUFHLEVBSFo7QUFJRTtBQUNBRixFQUFBQSxRQUFRLEdBQUdHLEtBQUssQ0FBQ0MsSUFBTixDQUFXSixRQUFYLENBQVg7QUFDQSxNQUFJQSxRQUFRLENBQUNLLE1BQVQsR0FBa0JKLEtBQXRCLEVBQTZCO0FBQzNCLFdBQU9LLE9BQU8sQ0FBQ0MsTUFBUixDQUFlLGtEQUFmLENBQVA7QUFDRDs7QUFFRCxNQUFJQyxhQUFhLEdBQUdSLFFBQVEsQ0FBQ1MsR0FBVCxDQUFhLENBQUNDLENBQUQsRUFBSUMsS0FBSixLQUFjRCxDQUFDLENBQUNFLElBQUYsQ0FBTyxNQUFNRCxLQUFiLEVBQW9CLE1BQU0sQ0FBQyxNQUFNQSxLQUFOLENBQWEsQ0FBeEMsQ0FBM0IsQ0FBcEI7O0FBRUEsU0FBT0wsT0FBTyxDQUFDTyxJQUFSLENBQWFMLGFBQWIsRUFBNEJJLElBQTVCLENBQWlDRCxLQUFLLElBQUk7QUFDL0MsUUFBSUQsQ0FBQyxHQUFHVixRQUFRLENBQUNjLE1BQVQsQ0FBZ0JILEtBQWhCLEVBQXVCLENBQXZCLEVBQTBCLENBQTFCLENBQVI7QUFDQUQsSUFBQUEsQ0FBQyxDQUFDRSxJQUFGLENBQU9HLENBQUMsSUFBSWIsT0FBTyxDQUFDYyxJQUFSLENBQWFELENBQWIsQ0FBWjtBQUNBLFFBQUlkLEtBQUssS0FBSyxDQUFkLEVBQWlCO0FBQ2YsYUFBT0MsT0FBUDtBQUNEO0FBQ0QsV0FBT0gsVUFBVSxDQUFDQyxRQUFELEVBQVdDLEtBQUssR0FBQyxDQUFqQixFQUFvQkMsT0FBcEIsQ0FBakI7QUFDRCxHQVBNLEVBT0pTLEtBQUssSUFBSTtBQUNWWCxJQUFBQSxRQUFRLENBQUNjLE1BQVQsQ0FBZ0JILEtBQWhCLEVBQXVCLENBQXZCO0FBQ0EsV0FBT1osVUFBVSxDQUFDQyxRQUFELEVBQVdDLEtBQVgsRUFBa0JDLE9BQWxCLENBQWpCO0FBQ0QsR0FWTSxDQUFQO0FBV0QsQzs7QUFFY0gsVSIsInNvdXJjZXNDb250ZW50IjpbIi8vIEZyb206IGh0dHBzOi8vZ2l0aHViLmNvbS9DYXN0dXJhbi9wcm9wZXItcHJvbWlzZS1yYWNlLmpzXG4vLyBVU0FHRTogcHJvcGVyUmFjZSA9IHJlcXVpcmUoJ3Byb21pc2VQcm9wZXJSYWNlLmpzJylcblxuZnVuY3Rpb24gcHJvcGVyUmFjZShcbiAgcHJvbWlzZXMsIC8vIGFycmF5IG9mIHByb21pc2VzIHRvIHJhY2VcbiAgY291bnQgPSAxLCAvLyBmb3IgcmVjdXJzaXZlIGNhbGxpbmdcbiAgcmVzdWx0cyA9IFtdIC8vIGFnZ3JlZ2F0b3Jcbikge1xuICBwcm9taXNlcyA9IEFycmF5LmZyb20ocHJvbWlzZXMpO1xuICBpZiAocHJvbWlzZXMubGVuZ3RoIDwgY291bnQpIHtcbiAgICByZXR1cm4gUHJvbWlzZS5yZWplY3QoJ1JhY2UgaXMgbm90IGZpbmlzaGFibGUgb3IgYWxsIHByb21pc2VzIHJlamVjdGVkLicpO1xuICB9XG4gICBcbiAgbGV0IGluZGV4UHJvbWlzZXMgPSBwcm9taXNlcy5tYXAoKHAsIGluZGV4KSA9PiBwLnRoZW4oKCkgPT4gaW5kZXgsICgpID0+IHt0aHJvdyBpbmRleDt9KSk7XG4gICBcbiAgcmV0dXJuIFByb21pc2UucmFjZShpbmRleFByb21pc2VzKS50aGVuKGluZGV4ID0+IHtcbiAgICBsZXQgcCA9IHByb21pc2VzLnNwbGljZShpbmRleCwgMSlbMF07XG4gICAgcC50aGVuKHYgPT4gcmVzdWx0cy5wdXNoKHYpKTtcbiAgICBpZiAoY291bnQgPT09IDEpIHtcbiAgICAgIHJldHVybiByZXN1bHRzO1xuICAgIH1cbiAgICByZXR1cm4gcHJvcGVyUmFjZShwcm9taXNlcywgY291bnQtMSwgcmVzdWx0cyk7XG4gIH0sIGluZGV4ID0+IHtcbiAgICBwcm9taXNlcy5zcGxpY2UoaW5kZXgsIDEpO1xuICAgIHJldHVybiBwcm9wZXJSYWNlKHByb21pc2VzLCBjb3VudCwgcmVzdWx0cyk7XG4gIH0pO1xufVxuXG5leHBvcnQgZGVmYXVsdCBwcm9wZXJSYWNlIl19
