@@ -1,6 +1,6 @@
 {
 	"name": "@dependency/promiseProperRace",
-	"version": "2.0.1",
+	"version": "1.0.3",
 	"main": "./entrypoint/programmaticAPI",
 	"scripts": {
 		"build": "yarn run scriptManager shouldCompileScript=true @deployment/deploymentScript \".buildSourceCode.moduleProject({}, {compile:[/**'./test'*/]})\"",
